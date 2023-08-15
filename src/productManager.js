@@ -1,4 +1,5 @@
 import { promises as fs } from "fs";
+
 export default class ProductManager {
   constructor() {
     this.path = "./producto.json";
@@ -56,7 +57,7 @@ export default class ProductManager {
     await fs.writeFile(this.path, JSON.stringify(productMod));
   };
 }
-const productos = new ProductManager();
+
 // productos.addProduct(
 //   "Mayonesa Hellmans",
 //   "Mayonesa por 950g",
@@ -122,7 +123,7 @@ const productos = new ProductManager();
 //   207
 // );
 
-productos.getProducts();
+//productos.getProducts();
 
 //productos.getProductById(4);
 

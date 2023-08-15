@@ -1,8 +1,14 @@
 import express from "express";
-import ProductManager from "./components/productManager";
-
+const PORT = 8080;
+//Genero una instancia de express en app
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+import ProductManager from "./productManager.js";
+
+app.get("/", (req, res) => {
+  res.send("Bienvenidos a Diarco online");
+});
+
+// app.use(express.urlencoded({ extended: true }));
 
 const productos = new ProductManager();
 const readProducts = productos.readproducts();
@@ -16,14 +22,14 @@ app.get("/products", async (req, res) => {
 });
 
 app.get("/products/:id", async (req, res) => {
-  let id = parseInt(req, params.id);
+  let id = parseInt(req.params.id);
   let allProducts = await readProducts;
   let productById = allProducts.find((product) => product.id === id);
   res.send(productById);
 });
-const PORT = 8080;
+
 const server = app.listen(PORT, () => {
-  console.log(`Express por Local Host ${server.adress().port}`);
+  console.log("Express por Local Host + server.adress().port");
 });
 server.on("error", (error) => {
   console.log(`Error del servidor %{error}`);
